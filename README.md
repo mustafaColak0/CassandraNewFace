@@ -50,7 +50,7 @@ npm install
 ```
 npm start
 ```
-Uygulama başarıyla ayağa kalktığında tarayıcınızdan http://localhost:3000 adresine giderek operasyon merkezini aktif edebilirsiniz.
+Uygulama başarıyla ayağa kalktığında tarayıcınızdan http://localhost:5000 adresine giderek operasyon merkezini aktif edebilirsiniz.
 
 🔒 Güvenlik ve Gizlilik (Security Notice)
 Bu proje BYOK (Bring Your Own Key) mimarisine sahiptir. Girdiğiniz API anahtarları hiçbir şekilde üçüncü taraf sunuculara veya veritabanlarına kaydedilmez; tamamen tarayıcınızın güvenli yerel hafızasında (localStorage) tutulur ve doğrudan ilgili AI API'sine TLS/SSL üzerinden şifreli olarak iletilir.
