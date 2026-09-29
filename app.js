@@ -8,7 +8,7 @@ const CHAT_SESSIONS_KEY = "cassandra_soc_history_v4";
 let pendingPassOriginalPrompt = null;
 
 // BACKEND URLSİ (Render üzerindeki yeni backend'e yönlendiriyor)
-const BACKEND_URL = "http://localhost:5000";
+const BACKEND_URL = "";
 
 function initSystem() {
   setInterval(() => {
@@ -145,7 +145,7 @@ async function loadScenarios() {
       pdfCase.disabled = generalMode;
       if (generalMode) pdfCase.checked = false;
     }
-    updateHUD();
+
   };
   sector.value = "__GENERAL__";
   sector.onchange();
@@ -285,6 +285,8 @@ async function runAnalysis() {
     const report = {
       reportId: data.reportId || Math.floor(Math.random() * 9000 + 1000),
       expert,
+      sector,
+      mode: sector === "__GENERAL__" ? "general" : "operation",
       attackVector: vaka,
       analysis: data.analysis,
       sourceFile: attachmentMeta,
@@ -1000,3 +1002,6 @@ document.addEventListener("paste", (event) => {
     }
   }
 });
+
+
+
