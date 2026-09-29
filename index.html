@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>CASSANDRA Aİ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght mix;600;700&family=JetBrains+Mono&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css?v=2.3">
+    <link rel="icon" type="png" href="cs.png">
+</head>
+<body>
+  <div class="ambient-grid"></div>
+  <div class="ambient-glow glow-a"></div>
+  <div class="ambient-glow glow-b"></div>
+
+  <div id="apiKeyModal" class="modal-shell">
+    <div class="modal-card hud-card">
+      <div class="eyebrow">SECURE ACCESS NODE</div>
+      <h2>CASSANDRA AI</h2>
+      <p>Cyber Operations Platform'a bağlanmak için geçerli Groq API Key gir.</p>
+      <input type="password" id="modalApiKeyInput" placeholder="gsk_..." />
+      <button id="saveKeyBtn" class="primary-btn">SİSTEME BAĞLAN</button>
+      <small>Anahtar yalnızca tarayıcında saklanır. <a href="https://console.groq.com/" target="_blank">Groq Console</a></small>
+    </div>
+  </div>
+
+  <div id="intro-overlay">
+    <div class="intro-mark">
+      <span class="intro-orbit"></span>
+      <div class="intro-core">C</div>
+    </div>
+    <p class="intro-kicker">AUTONOMOUS CYBER OPERATIONS</p>
+    <h1 class="intro-text">CASSANDRA AI</h1>
+  </div>
+
+  <div id="app-container">
+    <aside id="sidebar">
+      <div class="brand-block">
+        <div class="brand-icon">C</div>
+        <div>
+          <div class="brand-title">CASSANDRA</div>
+          <div class="brand-sub">CYBER OPERATIONS</div>
+        </div>
+      </div>
+
+      <div class="side-section">
+        <div class="section-title"><span>01</span> OPERATION PROFILE</div>
+        <label>Sektörel Alan</label>
+        <select id="sector-select"></select>
+        <label>Vaka Senaryosu</label>
+        <select id="vaka-select"></select>
+        <label class="pdf-title-option" title="Açıksa PDF adı seçili vaka senaryosundan, kapalıysa yazdığın konudan oluşturulur.">
+          <input type="checkbox" id="pdf-use-case-title">
+          <span class="pdf-check-ui"></span>
+          <span><b>PDF ADI: VAKA SENARYOSU</b><small>Kapalı: yazdığın konu kullanılır</small></span>
+        </label>
+      </div>
+
+      <div class="side-section agents-section">
+        <div class="section-title"><span>02</span> AI AGENTS</div>
+        <div class="radio-group agent-stack">
+          <label class="agent-card agent-red"><input type="radio" name="exp" value="Red Team Expert" checked><span class="agent-dot"></span><span><b>RED TEAM</b><small>Offensive Analysis</small></span><em>R</em></label>
+          <label class="agent-card agent-blue"><input type="radio" name="exp" value="Blue Team Responder"><span class="agent-dot"></span><span><b>BLUE TEAM</b><small>Defense & Response</small></span><em>B</em></label>
+          <label class="agent-card agent-gold"><input type="radio" name="exp" value="Chief Strategist"><span class="agent-dot"></span><span><b>STRATEGIST</b><small>Decision Fusion</small></span><em>S</em></label>
+          <label class="agent-card agent-purple"><input type="radio" name="exp" value="OSINT Specialist"><span class="agent-dot"></span><span><b>OSINT</b><small>Open Intelligence</small></span><em>O</em></label>
+          <label class="agent-card agent-silver"><input type="radio" name="exp" value="Threat Intelligence"><span class="agent-dot"></span><span><b>THREAT INTEL</b><small>IOC Enrichment</small></span><em>T</em></label>
+          <label class="agent-card agent-cyan"><input type="radio" name="exp" value="Forensics Specialist"><span class="agent-dot"></span><span><b>FORENSICS</b><small>Evidence Analysis</small></span><em>F</em></label>
+          <label class="agent-card agent-silver"><input type="radio" name="exp" value="Compliance Officer"><span class="agent-dot"></span><span><b>COMPLIANCE</b><small>Policy & Controls</small></span><em>C</em></label>
+        </div>
+      </div>
+
+      <div class="new-chat-section side-section">
+        <button id="new-chat-btn" class="new-chat-btn"><span>＋</span> NEW CHAT</button>
+      </div>
+
+      <div class="history-section side-section">
+        <div class="history-header">
+          <div class="section-title"><span>03</span> CASE ARCHIVE</div>
+          <button id="history-toggle-btn" class="history-control-btn">▾</button>
+        </div>
+        <div id="history-content" class="history-content active">
+          <div id="history-list"></div>
+          <button id="clear-history-btn" class="clear-all-btn">RESET ARCHIVE</button>
+        </div>
+      </div>
+
+      <div class="sidebar-footer">
+        <span class="live-dot"></span> 7 AGENTS READY
+        <b>NODE 01</b>
+      </div>
+    </aside>
+
+    <main id="main-view">
+      <header class="status-bar-wrapper">
+        <div class="status-bar">
+          <div class="top-identity">
+            <span class="mini-label">CASSANDRA // OPS CENTER</span>
+            <strong>Autonomous Cyber Intelligence</strong>
+          </div>
+          <div class="time-group">
+            <span id="clock-local">LOCAL --:--:--</span>
+            <span id="clock-utc">UTC --:--:--</span>
+          </div>
+          <div class="threat-pill"><span></span>SYSTEM ONLINE</div>
+        </div>
+        <div class="analysis-params-bar">
+          <div class="param-item"><span>SECTOR</span><b id="display-sector">-</b></div>
+          <div class="param-divider"></div>
+          <div class="param-item"><span>CASE</span><b id="display-vaka">-</b></div>
+          <div class="param-divider"></div>
+          <div class="param-item"><span>ACTIVE AGENT</span><b id="display-analyst">-</b></div>
+        </div>
+      </header>
+
+      <div class="workspace">
+        <section class="center-stage">
+          <div class="core-panel hud-card">
+            <div class="core-copy">
+              <span class="eyebrow">CASSANDRA NEURAL CORE</span>
+              <h1>CYBER OPERATIONS <span>COMMAND NODE</span></h1>
+              <p>Çoklu uzman ajanlar, gerçek zamanlı vaka analizi ve kanıt odaklı karar desteği tek merkezde.</p>
+              <div class="core-stats">
+                <div><small>AGENTS</small><strong>07</strong></div>
+                <div><small>ENGINE</small><strong>GROQ</strong></div>
+                <div><small>MODE</small><strong>LIVE</strong></div>
+              </div>
+            </div>
+            <div class="core-visual" aria-hidden="true">
+              <div class="orbit orbit-1"><i></i><i></i><i></i></div>
+              <div class="orbit orbit-2"><i></i><i></i><i></i></div>
+              <div class="core-sphere"><span>C</span></div>
+              <div class="pulse-ring"></div>
+              <div class="core-label label-red">RED</div>
+              <div class="core-label label-blue">BLUE</div>
+              <div class="core-label label-purple">OSINT</div>
+              <div class="core-label label-gold">STRAT</div>
+            </div>
+          </div>
+
+          <div class="chat-shell hud-card">
+            <div class="panel-heading">
+              <div><span class="eyebrow">LIVE OPERATION STREAM</span><h3>Analysis Console</h3></div>
+              <div class="stream-state"><span></span>READY</div>
+            </div>
+            <div class="chat-column">
+              <div id="chat-flow">
+                <div class="msg ai-msg">
+                  <div class="msg-head assistant"><span class="chat-avatar assistant gold">CSA</span><span class="expert-tag">SYSTEM INITIALIZER</span></div>
+                  <div class="msg-body"><p>Cassandra Core çevrimiçi. Bir ajan seç, vakayı belirle ve analiz komutunu gönder.</p></div>
+                </div>
+              </div>
+              <div id="input-zone-wrapper">
+                <div id="attachment-preview" class="attachment-preview"></div>
+                <div id="input-zone">
+                  <input type="file" id="file-input" accept="image/png,image/jpeg,image/webp,text/plain,.txt,.log,.json,.csv" hidden />
+                  <button id="attach-btn" class="attach-btn" title="Dosya ekle">+</button>
+                  <input type="text" id="prompt-in" placeholder="Cassandra'ya görev ver..." autocomplete="off" />
+                  <button id="analyze-btn" class="send-btn"><span>EXECUTE</span><b>→</b></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <aside class="intel-rail">
+          <div class="hud-card telemetry-card">
+            <div class="panel-heading compact"><div><span class="eyebrow">LIVE TELEMETRY</span><h3>System Health</h3></div><span class="status-ok">NOMINAL</span></div>
+            <div class="metric"><div><span>AI ENGINE</span><b>92%</b></div><progress max="100" value="92"></progress></div>
+            <div class="metric"><div><span>API LINK</span><b>87%</b></div><progress max="100" value="87"></progress></div>
+            <div class="metric"><div><span>MEMORY</span><b>64%</b></div><progress max="100" value="64"></progress></div>
+          </div>
+
+          <div class="hud-card threat-card">
+            <div class="panel-heading compact"><div><span class="eyebrow">RISK MATRIX</span><h3>Threat Posture</h3></div></div>
+            <div class="risk-ring"><div><small>RISK</small><strong>LOW</strong><span>24</span></div></div>
+            <div class="threat-grid"><div><span>Findings</span><b>00</b></div><div><span>Evidence</span><b>00</b></div><div><span>IOC</span><b>00</b></div><div><span>Cases</span><b>00</b></div></div>
+          </div>
+
+          <div class="hud-card activity-card">
+            <div class="panel-heading compact"><div><span class="eyebrow">EVENT BUS</span><h3>Live Intelligence</h3></div></div>
+            <ul class="event-list">
+              <li><time>SYS</time><span><b>Core initialized</b><small>All modules standing by</small></span></li>
+              <li><time>AI</time><span><b>Agent mesh online</b><small>7 specialist nodes ready</small></span></li>
+              <li><time>NET</time><span><b>Backend route active</b><small>Secure analysis endpoint</small></span></li>
+            </ul>
+          </div>
+
+          <div class="hud-card modules-card">
+            <div class="panel-heading compact"><div><span class="eyebrow">MODULES</span><h3>Capability Grid</h3></div></div>
+            <div class="module-grid"><span>LLM</span><span>OSINT</span><span>FORENSICS</span><span>REPORT</span><span>VISION</span><span>CASES</span></div>
+          </div>
+        </aside>
+      </div>
+    </main>
+  </div>
+
+    <!-- SCRIPTS -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.10/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.10/vfs_fonts.js"></script>
+    <script src="app.js?v=2.3"></script>
+</body>
+</html>
