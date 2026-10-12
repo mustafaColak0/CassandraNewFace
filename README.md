@@ -4,10 +4,9 @@ Cassandra AI, siber güvenlik vakalarını, saldırı vektörlerini ve log dosya
 
 ### 🌐 Canlı Önizleme / Live Demo
 Projenin web arayüzünü canlı ortamda test etmek ve deneyimlemek için aşağıdaki bağlantıyı kullanabilirsiniz:
-👉 **[Cassandra AI Web Interface](https://mustafacolak0.github.io/CassandraAIWeb/)**
+👉 **[Cassandra AI Web Interface](https://cassandra-new-face.vercel.app/)**
 
-<img width="800" height="362" alt="Cass-ezgif com-video-to-gif-converter" src="https://github.com/user-attachments/assets/4c855629-06e2-4c38-8390-c7cdd7a6d363" />
-
+<img width="800" height="357" alt="cassssss-ezgif com-video-to-gif-converter" src="https://github.com/user-attachments/assets/b73e0422-967a-40f4-9745-a9b4183ca8df" />
 
 ---
 
